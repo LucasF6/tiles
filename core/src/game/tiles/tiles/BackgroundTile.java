@@ -14,8 +14,4 @@ public class BackgroundTile extends Tile {
         return texture;
     }
 
-    @Override
-    public final boolean isSolid() {
-        return false;
-    }
 }

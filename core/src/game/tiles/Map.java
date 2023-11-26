@@ -1,11 +1,12 @@
 package game.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import game.tiles.tiles.*;
 
 public class Map {
-    private final int size = 40;
+    private final int size = 64;
 
     private final Tile[][] tiles = new Tile[size][size];
     private float offset = 5;
@@ -72,19 +73,23 @@ public class Map {
         offset = worldSize / 2;
     }
 
-    public boolean allowPosition(float x, float y) {
-        if (x < 0 || x >= 64 || y < 0 || y >= 64) {
-            return false;
-        }
-        return !tiles[(int) x][(int) y].isSolid();
+    public boolean isBlocked(Rectangle r) {
+        return tileBlocked((int) Math.floor(r.x), (int) Math.floor(r.y), r)
+                || tileBlocked((int) Math.floor(r.x + r.width), (int) Math.floor(r.y), r)
+                || tileBlocked((int) Math.floor(r.x), (int) Math.floor(r.y + r.height), r)
+                || tileBlocked((int) Math.floor(r.x + r.width), (int) Math.floor(r.y + r.height), r);
+    }
+
+    private boolean tileBlocked(int i, int j, Rectangle r) {
+        return tiles[i][j].isBlocking(r, i, j);
     }
 
     // x and y in world coordinates
     public void render(SpriteBatch batch, float playerX, float playerY) {
-        int startX = (int) (playerX - offset);
-        int startY = (int) (playerY - offset);
-        int endX = (int) (playerX + offset);
-        int endY = (int) (playerY + offset);
+        int startX = (int) Math.floor(playerX - offset);
+        int startY = (int) Math.floor(playerY - offset);
+        int endX = (int) Math.floor(playerX + offset);
+        int endY = (int) Math.floor(playerY + offset);
         if (startX < 0) {
             startX = 0;
         }

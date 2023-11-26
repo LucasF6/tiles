@@ -2,6 +2,7 @@ package game.tiles.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 import static game.tiles.Textures.Tiles.NUMBERS;
 
@@ -29,12 +30,11 @@ public abstract class Tile {
 
     // All properties default to those of background tiles
 
-    public boolean isSolid() {
-        return false;
-    }
-
     public void onClick() {}
 
     public abstract TextureRegion getTexture();
 
+    public boolean isBlocking(Rectangle rect, int x, int y) {
+        return false;
+    }
 }

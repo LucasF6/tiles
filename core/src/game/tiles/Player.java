@@ -3,6 +3,7 @@ package game.tiles;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.controllers.Controller;
 
@@ -16,6 +17,7 @@ public class Player {
     private Animation<TextureRegion> animation = PLAYER_DOWN;
     private float x = 1;
     private float y = 1;
+    private final Rectangle hitbox = new Rectangle(x + 0.75f / 2, y, 0.3f, 0.2f);
     private final long startTime = TimeUtils.millis();
 
     public void update(Controller controller, Map map) {
@@ -44,14 +46,14 @@ public class Player {
             projX += s * delta;
             animation = PLAYER_RIGHT;
         }
-        if (map.allowPosition(projX, projY) || !map.allowPosition(x, y)) {
+        hitbox.setX(projX - 0.3f / 2);
+        hitbox.setY(projY);
+        if (!map.isBlocked(hitbox)) {
             x = projX;
             y = projY;
-        } else if (map.allowPosition(x, projY)) {
-            y = projY;
-        } else if (map.allowPosition(projX, y)) {
-            x = projX;
         }
+        hitbox.setX(x - 0.3f / 2);
+        hitbox.setY(y);
     }
 
     public TextureRegion getTextureRegion() {

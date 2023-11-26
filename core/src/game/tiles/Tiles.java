@@ -58,7 +58,7 @@ public class Tiles extends ApplicationAdapter {
 		}
 
 		batch.begin();
-		map.render(batch, player.getX(), player.getY());
+		map.render(batch, camera.position.x, camera.position.y);
 		batch.draw(player.getTextureRegion(), player.getX() - 0.75f / 2, player.getY(), 0.75f, 1f);
 		batch.end();
 	}
@@ -76,6 +76,18 @@ public class Tiles extends ApplicationAdapter {
 
 	public void updateCamera() {
 		camera.position.set(player.getX(), player.getY(), 0);
+		if (player.getX() < viewport.getWorldWidth() / 2) {
+			camera.position.x = viewport.getWorldWidth() / 2;
+		}
+		if (player.getX() > 64 - viewport.getWorldWidth() / 2) {
+			camera.position.x = 64 - viewport.getWorldWidth() / 2;
+		}
+		if (player.getY() < viewport.getWorldHeight() / 2) {
+			camera.position.y = viewport.getWorldHeight() / 2;
+		}
+		if (player.getY() > 64 - viewport.getWorldHeight() / 2) {
+			camera.position.y = 64 - viewport.getWorldHeight() / 2;
+		}
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 	}
