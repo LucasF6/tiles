@@ -23,6 +23,7 @@ public abstract class Tile {
 
     public final void draw(SpriteBatch batch, float x, float y) {
         batch.draw(getTexture(), x, y, 1, 1);
+        addLayers(batch, x, y);
         if (0 < value && value <= 9) {
             batch.draw(NUMBERS[value - 1], x, y, 1, 1);
         }
@@ -30,11 +31,14 @@ public abstract class Tile {
 
     // All properties default to those of background tiles
 
-    public void onClick() {}
+    public void getClicked() {}
+
+    public void addLayers(SpriteBatch batch, float x, float y) {}
 
     public abstract TextureRegion getTexture();
 
-    public boolean isBlocking(Rectangle rect, int x, int y) {
+    // consider the tile as being in the unit square
+    public boolean isBlocking(float leftX, float rightX, float y) {
         return false;
     }
 }

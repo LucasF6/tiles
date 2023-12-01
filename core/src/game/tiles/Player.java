@@ -10,14 +10,14 @@ import game.tiles.controllers.Controller;
 import static game.tiles.Textures.Player.*;
 
 public class Player {
-    private static final float NORMAL_SPEED = 2;
-    private static final float FAST_SPEED = 5;
+    private static final float NORMAL_SPEED = 2; // 2
+    private static final float FAST_SPEED = 5;   // 5
     private static final float DIAGONAL_SCALAR = (float) Math.pow(0.5, 0.5);
 
     private Animation<TextureRegion> animation = PLAYER_DOWN;
     private float x = 1;
     private float y = 1;
-    private final Rectangle hitbox = new Rectangle(x + 0.75f / 2, y, 0.3f, 0.2f);
+    private final Rectangle hitbox = new Rectangle(x - 0.3f / 2, y, 0.3f, 0.2f);
     private final long startTime = TimeUtils.millis();
 
     public void update(Controller controller, Map map) {
@@ -46,14 +46,14 @@ public class Player {
             projX += s * delta;
             animation = PLAYER_RIGHT;
         }
-        hitbox.setX(projX - 0.3f / 2);
-        hitbox.setY(projY);
-        if (!map.isBlocked(hitbox)) {
+        if (!map.isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, projY)) {
             x = projX;
             y = projY;
+        } else if (!map.isBlocked(x - 0.3f / 2, x + 0.3f / 2, projY)) {
+            y = projY;
+        } else if (!map.isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, y)) {
+            x = projX;
         }
-        hitbox.setX(x - 0.3f / 2);
-        hitbox.setY(y);
     }
 
     public TextureRegion getTextureRegion() {

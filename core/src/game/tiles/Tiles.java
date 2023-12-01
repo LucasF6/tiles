@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
 
+import static game.tiles.Constants.Map.SIZE;
+
 public class Tiles extends ApplicationAdapter {
 	SpriteBatch batch;
 	OrthographicCamera camera;
@@ -54,7 +56,7 @@ public class Tiles extends ApplicationAdapter {
 		if (Gdx.input.justTouched()) {
 			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			viewport.unproject(vec);
-			map.onClick((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+			map.getClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
 		}
 
 		batch.begin();
@@ -79,14 +81,14 @@ public class Tiles extends ApplicationAdapter {
 		if (player.getX() < viewport.getWorldWidth() / 2) {
 			camera.position.x = viewport.getWorldWidth() / 2;
 		}
-		if (player.getX() > 64 - viewport.getWorldWidth() / 2) {
-			camera.position.x = 64 - viewport.getWorldWidth() / 2;
+		if (player.getX() > SIZE - viewport.getWorldWidth() / 2) {
+			camera.position.x = SIZE - viewport.getWorldWidth() / 2;
 		}
 		if (player.getY() < viewport.getWorldHeight() / 2) {
 			camera.position.y = viewport.getWorldHeight() / 2;
 		}
-		if (player.getY() > 64 - viewport.getWorldHeight() / 2) {
-			camera.position.y = 64 - viewport.getWorldHeight() / 2;
+		if (player.getY() > SIZE - viewport.getWorldHeight() / 2) {
+			camera.position.y = SIZE - viewport.getWorldHeight() / 2;
 		}
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);

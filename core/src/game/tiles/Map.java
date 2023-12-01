@@ -1,38 +1,42 @@
 package game.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import game.tiles.tiles.*;
 
-public class Map {
-    private final int size = 64;
+import static game.tiles.Constants.Map.*;
+import static game.tiles.Textures.Tiles.STONE_BACKGROUND;
 
-    private final Tile[][] tiles = new Tile[size][size];
+public class Map {
+    private final Tile[][] tiles = new Tile[SIZE][SIZE];
     private float offset = 5;
+    private final Array<Point> open = new Array<>(); // contains points that need to be examined
+    private final Array<Point> closed = new Array<>(); // contains open and points that were already examined
 
     public Map() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
                 tiles[i][j] = new GrassTile();
             }
         }
         tiles[5][10] = new StoneTile();
-        tiles[5][11] = new StoneBackgroundTile();
+        tiles[5][11] = new LampTile(STONE_BACKGROUND);
+        tiles[6][11] = new StoneTile();
         tiles[5][12] = new WoodTile();
     }
 
-    public void onClick(int i, int j) {
-        if (i < 0 || i >= size || j < 0 || j >= size) {
+    public void getClicked(int i, int j) {
+        if (i < 0 || i >= SIZE || j < 0 || j >= SIZE) {
             System.out.println("OUT OF RANGE");
             return;
         }
+        tiles[i][j].getClicked();
         if (tiles[i][j].getValue() != 0) {
             return;
         }
         int number = 1;
-        Array<Point> open = new Array<>(); // contains points that need to be examined
-        Array<Point> closed = new Array<>(); // contains all the points of open and points that were already examined
+        open.clear();
+        closed.clear();
         open.add(Point.of(i, j));
         closed.add(Point.of(i, j));
         tiles[i][j].increment();
@@ -73,15 +77,19 @@ public class Map {
         offset = worldSize / 2;
     }
 
-    public boolean isBlocked(Rectangle r) {
-        return tileBlocked((int) Math.floor(r.x), (int) Math.floor(r.y), r)
-                || tileBlocked((int) Math.floor(r.x + r.width), (int) Math.floor(r.y), r)
-                || tileBlocked((int) Math.floor(r.x), (int) Math.floor(r.y + r.height), r)
-                || tileBlocked((int) Math.floor(r.x + r.width), (int) Math.floor(r.y + r.height), r);
+    public boolean isBlocked(float leftX, float rightX, float y) {
+        int j = (int) Math.floor(y);
+        int li = (int) Math.floor(leftX);
+        int ri = (int) Math.floor(rightX);
+        return tileBlocked(li, j, leftX - li, rightX - li, y - j)
+                || tileBlocked(ri, j, leftX - ri, rightX - ri, y - j);
     }
 
-    private boolean tileBlocked(int i, int j, Rectangle r) {
-        return tiles[i][j].isBlocking(r, i, j);
+    private boolean tileBlocked(int i, int j, float leftX, float rightX, float y) {
+        if (i < 0 || i > SIZE || j < 0 || j > SIZE) {
+            return true;
+        }
+        return tiles[i][j].isBlocking(leftX, rightX, y);
     }
 
     // x and y in world coordinates
@@ -96,17 +104,57 @@ public class Map {
         if (startY < 0) {
             startY = 0;
         }
-        if (endX >= size) {
-            endX = size - 1;
+        if (endX >= SIZE) {
+            endX = SIZE - 1;
         }
-        if (endY >= size) {
-            endY = size - 1;
+        if (endY >= SIZE) {
+            endY = SIZE - 1;
         }
         for (int i = 0; i <= endX - startX; i++) {
             for (int j = 0; j <= endY - startY; j++) {
                 tiles[i + startX][j + startY].draw(batch, startX + i, startY + j);
             }
         }
+    }
+
+    private static class Point {
+        public int x;
+        public int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof Point)) {
+                return false;
+            }
+            Point p = (Point) obj;
+            return x == p.x && y == p.y;
+        }
+
+        public static Point of(int x, int y) {
+            return new Point(x, y);
+        }
+
+        public Point left() {
+            return Point.of(x - 1, y);
+        }
+
+        public Point right() {
+            return Point.of(x + 1, y);
+        }
+
+        public Point up() {
+            return Point.of(x, y + 1);
+        }
+
+        public Point down() {
+            return Point.of(x, y - 1);
+        }
+
     }
 
 }

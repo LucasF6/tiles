@@ -9,11 +9,13 @@ public final class Textures {
     public static final class Tiles {
         public static final Texture TILES_TEXTURE = new Texture("tiles.png");
         public static final TextureRegion[] TILES = getHorizontalTextureRegionArray(TILES_TEXTURE,
-                0, 0, 128, 128, 4);
+                0, 0, 128, 128, 6);
         public static final TextureRegion GRASS = TILES[0];
         public static final TextureRegion STONE_BACKGROUND = TILES[1];
         public static final TextureRegion STONE = TILES[2];
         public static final TextureRegion WOOD = TILES[3];
+        public static final TextureRegion LAMP_OFF = TILES[4];
+        public static final TextureRegion LAMP_ON = TILES[5];
 
         public static final Texture NUMBERS_TEXTURE = new Texture("numbers.png");
         public static final TextureRegion[] NUMBERS = getHorizontalTextureRegionArray(NUMBERS_TEXTURE,

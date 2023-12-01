@@ -16,9 +16,8 @@ public class BlockTile extends Tile {
     }
 
     @Override
-    public final boolean isBlocking(Rectangle r, int x, int y) {
-
-        return x < r.x + r.width && x + 1 > r.x && y < r.y + r.height && y + 1 > r.y;
+    public final boolean isBlocking(float leftX, float rightX, float y) {
+        return leftX < 1 && rightX > 0 && 0 < y && y < 1;
     }
 
 }
