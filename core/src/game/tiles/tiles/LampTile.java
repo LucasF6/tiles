@@ -14,7 +14,8 @@ public class LampTile extends Tile {
     private final TextureRegion texture;
     private boolean isOn = false;
 
-    public LampTile(TextureRegion texture) {
+    public LampTile(TextureRegion texture, int x, int y) {
+        super(x, y);
         this.texture = texture;
     }
 
@@ -24,7 +25,7 @@ public class LampTile extends Tile {
     }
 
     @Override
-    public void getClicked() {
+    public void getLeftClicked() {
         isOn = !isOn;
     }
 
@@ -34,7 +35,7 @@ public class LampTile extends Tile {
     }
 
     @Override
-    public boolean isBlocking(float leftX, float rightX, float y) {
+    public boolean isSolid(float leftX, float rightX, float y) {
         return leftX < RIGHT_X && rightX > LEFT_X && BOTTOM_Y < y && y < TOP_Y;
     }
 

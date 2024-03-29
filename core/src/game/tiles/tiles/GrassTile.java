@@ -4,8 +4,8 @@ import static game.tiles.Textures.Tiles.GRASS;
 
 public class GrassTile extends BackgroundTile {
 
-    public GrassTile() {
-        super(GRASS);
+    public GrassTile(int x, int y) {
+        super(GRASS, x, y);
     }
 
 }

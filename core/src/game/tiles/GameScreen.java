@@ -1,6 +1,7 @@
 package game.tiles;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,7 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import game.tiles.controllers.Controller;
-import game.tiles.controllers.DefaultController;
+import game.tiles.tiles.Tile;
 
 import static game.tiles.Constants.Map.SIZE;
 
@@ -30,7 +31,8 @@ public class GameScreen extends ScreenAdapter {
 		camera.position.set(0, 0, 0);
 		controller = game.controller;
 		player = new Player();
-		map = new Map();
+		map = Map.getInstance();
+		TileValueUpdater.getInstance().updateAll();
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
@@ -52,10 +54,15 @@ public class GameScreen extends ScreenAdapter {
 		updateCamera();
 
 		player.update(controller, map);
-		if (Gdx.input.justTouched()) {
+		if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
 			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			viewport.unproject(vec);
-			map.getClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+			map.getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+		}
+		if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
+			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			viewport.unproject(vec);
+			map.getRightClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
 		}
 
 		batch.begin();

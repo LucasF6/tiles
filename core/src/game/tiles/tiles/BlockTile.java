@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class BlockTile extends Tile {
     private final TextureRegion texture;
 
-    public BlockTile(TextureRegion texture) {
+    public BlockTile(TextureRegion texture, int x, int y) {
+        super(x, y);
         this.texture = texture;
     }
 
@@ -16,7 +17,7 @@ public class BlockTile extends Tile {
     }
 
     @Override
-    public final boolean isBlocking(float leftX, float rightX, float y) {
+    public final boolean isSolid(float leftX, float rightX, float y) {
         return leftX < 1 && rightX > 0 && 0 < y && y < 1;
     }
 

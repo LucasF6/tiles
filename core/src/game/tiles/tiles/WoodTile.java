@@ -4,8 +4,8 @@ import static game.tiles.Textures.Tiles.WOOD;
 
 public class WoodTile extends BlockTile {
 
-    public WoodTile() {
-        super(WOOD);
+    public WoodTile(int x, int y) {
+        super(WOOD, x, y);
     }
 
 }
