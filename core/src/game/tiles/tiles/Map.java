@@ -1,15 +1,13 @@
-package game.tiles;
+package game.tiles.tiles;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import game.tiles.tiles.*;
+import game.tiles.TileValueUpdater;
 
 import static game.tiles.Constants.Map.*;
 import static game.tiles.Textures.Tiles.STONE_BACKGROUND;
-import static game.tiles.Textures.Tiles.WOOD;
 
 public class Map {
     private static Map instance;
@@ -97,8 +95,22 @@ public class Map {
         return tiles[i][j].isSolid(leftX, rightX, y);
     }
 
+    public boolean isBlocked(float x, float y) {
+        if (x < 0 || x > SIZE || y < 0 || y > SIZE) {
+            return true;
+        }
+        int i = (int) Math.floor(x);
+        int j = (int) Math.floor(y);
+        return tiles[i][j].isSolid(x - i, y - i);
+    }
+
     public Tile getTile(int x, int y) {
         return tiles[x][y];
+    }
+
+    public void setTile(Tile tile) {
+        tiles[tile.x][tile.y] = tile;
+        TileValueUpdater.getInstance().update(tile.x, tile.y);
     }
 
     // x and y in world coordinates

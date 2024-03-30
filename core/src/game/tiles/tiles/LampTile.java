@@ -2,6 +2,7 @@ package game.tiles.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import game.tiles.TileValueUpdater;
 
 import static game.tiles.Textures.Tiles.LAMP_OFF;
 import static game.tiles.Textures.Tiles.LAMP_ON;
@@ -27,6 +28,9 @@ public class LampTile extends Tile {
     @Override
     public void getLeftClicked() {
         isOn = !isOn;
+        if (isOn) {
+            TileValueUpdater.getInstance().lampLight(x, y);
+        }
     }
 
     @Override
@@ -37,6 +41,11 @@ public class LampTile extends Tile {
     @Override
     public boolean isSolid(float leftX, float rightX, float y) {
         return leftX < RIGHT_X && rightX > LEFT_X && BOTTOM_Y < y && y < TOP_Y;
+    }
+
+    @Override
+    public boolean isSolid(float x, float y) {
+        return LEFT_X < x && x < RIGHT_X && BOTTOM_Y < y && y < TOP_Y;
     }
 
 }

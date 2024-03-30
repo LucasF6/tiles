@@ -22,6 +22,14 @@ public final class Textures {
                 0, 0, 128, 128, 9);
     }
 
+    public static final class Items {
+        public static final Texture INVENTORY = new Texture("inventory.png");
+        public static final Texture INVENTORY_SELECTION = new Texture("inventory-selection.png");
+
+        public static final Texture ITEMS_TEXTURE = new Texture("LampItem.png");
+        public static final TextureRegion LAMP = new TextureRegion(ITEMS_TEXTURE, 64, 64);
+    }
+
     public static final class Player {
         public static final Texture PLAYER_TEXTURE = new Texture("player.png");
         public static final Animation<TextureRegion> PLAYER_DOWN = new Animation<TextureRegion>(0.25f,

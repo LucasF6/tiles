@@ -21,4 +21,9 @@ public class BlockTile extends Tile {
         return leftX < 1 && rightX > 0 && 0 < y && y < 1;
     }
 
+    @Override
+    public final boolean isSolid(float x, float y) {
+        return true;
+    }
+
 }

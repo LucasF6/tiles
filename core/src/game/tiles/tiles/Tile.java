@@ -33,4 +33,8 @@ public class Tile {
     public boolean isSolid(float leftX, float rightX, float y) {
         return false;
     }
+
+    public boolean isSolid(float x, float y) {
+        return false;
+    }
 }

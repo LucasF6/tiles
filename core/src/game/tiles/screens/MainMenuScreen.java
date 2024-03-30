@@ -1,10 +1,11 @@
-package game.tiles;
+package game.tiles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.*;
+import game.tiles.Tiles;
 
 public class MainMenuScreen extends ScreenAdapter {
     private final Tiles game;

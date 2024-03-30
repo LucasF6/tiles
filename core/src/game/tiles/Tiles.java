@@ -4,10 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
+import game.tiles.screens.MainMenuScreen;
 
 public class Tiles extends Game {
     public SpriteBatch batch;
-    public Controller controller = new DefaultController();
 
     @Override
     public void create() {

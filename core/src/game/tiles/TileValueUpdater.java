@@ -1,6 +1,7 @@
 package game.tiles;
 
 import com.badlogic.gdx.utils.Array;
+import game.tiles.tiles.Map;
 import game.tiles.tiles.Tile;
 import game.tiles.tiles.ValueTile;
 
@@ -79,10 +80,26 @@ public class TileValueUpdater {
     }
 
     private void checkPoint(Point p, int number) {
-        if (p.x >= 0 && p.y >= 0 && tiles[p.x][p.y] != null
-                && tiles[p.x][p.y].getValue() == number && !closed.contains(p, false)) {
+        if (isPointOfValue(p, number) && !closed.contains(p, false)) {
             open.add(p);
             closed.add(p);
+        }
+    }
+
+    private boolean isPointOfValue(Point p, int number) {
+        return p.x >= 0 && p.y >= 0 && tiles[p.x][p.y] != null && tiles[p.x][p.y].getValue() == number;
+    }
+
+    public void lampLight(int x, int y) {
+        Point lampPoint = Point.of(x, y);
+        Point[] adjPoints = lampPoint.adjacentPoints();
+        for (Point adjPoint : adjPoints) {
+            if (!isPointOfValue(adjPoint, 4)) {
+                return;
+            }
+        }
+        for (Point adjPoint : adjPoints) {
+            tiles[adjPoint.x][adjPoint.y].increment();
         }
     }
 
@@ -122,6 +139,10 @@ public class TileValueUpdater {
 
         public Point down() {
             return of(x, y - 1);
+        }
+
+        public Point[] adjacentPoints() {
+            return new Point[] {left(), right(), up(), down()};
         }
 
     }
