@@ -43,7 +43,7 @@ public class Inventory {
         if (item.isStackable()) {
             for (int i = 0; i < 10; i++) {
                 if (item.getName().equals(inventory[i].getName())) {
-                    inventory[i].count++;
+                    inventory[i].count += item.count;
                     return;
                 }
             }

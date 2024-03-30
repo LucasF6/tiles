@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
+import game.tiles.controllers.DeveloperController;
 import game.tiles.items.Inventory;
 import game.tiles.items.Item;
 import game.tiles.items.Pickaxe;

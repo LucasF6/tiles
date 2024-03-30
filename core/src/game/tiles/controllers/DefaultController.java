@@ -39,7 +39,7 @@ public class DefaultController implements Controller {
 
     @Override
     public boolean useItem() {
-        return Gdx.input.isKeyJustPressed(Input.Keys.SPACE);
+        return Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT);
     }
 
     @Override

@@ -33,10 +33,10 @@ public class ItemEntity extends Entity {
         this.y = y;
     }
 
-    protected final void update(float deltaTime) {
+    protected void update(float deltaTime) {
         double distanceToPlayer = Math.hypot(player.x - x, player.y - y);
         if (distanceToPlayer < 0.3) {
-            player.addItem(asItem());
+            player.addItem(item);
             delete();
         } else if (distanceToPlayer < 1.2) {
             if (attractPlayer) {
@@ -54,7 +54,7 @@ public class ItemEntity extends Entity {
         y += deltaTime * speed * MathUtils.sin(direction);
     }
 
-    protected void draw(SpriteBatch batch) {
+    protected final void draw(SpriteBatch batch) {
         hitbox.x = x - 0.32f;
         hitbox.y = y - 0.32f;
         if (MapViewer.getInstance().getVisibleRectangle().overlaps(hitbox)) {
@@ -64,10 +64,6 @@ public class ItemEntity extends Entity {
 
     protected TextureRegion getTexture() {
         return texture;
-    }
-
-    protected Item asItem() {
-        return item;
     }
 
 }
