@@ -37,8 +37,6 @@ public class GameScreen extends ScreenAdapter {
 		mapViewer = MapViewer.getInstance();
 		Entity.setBatch(batch);
 		TileValueUpdater.getInstance().updateAll();
-		new LampItem().asEntity(10, 10);
-		new LampItem().asEntity(10, 15);
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
@@ -64,7 +62,7 @@ public class GameScreen extends ScreenAdapter {
 			mapViewer.unproject(vec);
 			map.getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
 		}
-		if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			mapViewer.unproject(vec);
 			player.useSelectedItem(vec.x, vec.y);

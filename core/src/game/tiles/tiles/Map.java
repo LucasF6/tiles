@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import game.tiles.TileValueUpdater;
+import game.tiles.items.LampItem;
 
 import static game.tiles.Constants.Map.*;
 import static game.tiles.Textures.Tiles.STONE_BACKGROUND;
@@ -51,6 +52,7 @@ public class Map {
                 }
             }
         }
+        tiles[46][15] = new LockedTile(5, new LampItem(), 46, 15);
     }
 
     public static Map getInstance() {
