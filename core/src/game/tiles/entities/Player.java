@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.items.Inventory;
 import game.tiles.items.Item;
@@ -47,6 +48,18 @@ public class Player extends Entity {
     public void update(float deltaTime) {
         if (controller.getDrop()) {
             inventory.dropSelectedItem(x, y - 0.4f);
+        }
+
+        if (controller.updateTile()) {
+            Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            MapViewer.getInstance().unproject(vec);
+            map.getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+        }
+
+        if (controller.useItem()) {
+            Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            MapViewer.getInstance().unproject(vec);
+            inventory.useSelectedItem(vec.x, vec.y);
         }
 
         boolean zoomIn = controller.zoomIn();

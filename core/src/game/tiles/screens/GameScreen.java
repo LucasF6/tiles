@@ -41,10 +41,6 @@ public class GameScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
 			public boolean scrolled(float x, float y) {
-				/**
-				MapViewer.getInstance().resizeWorld(y);
-				return true;
-				 */
 				player.switchSelectedItem(MathUtils.floor(y));
 				return true;
 			}
@@ -57,16 +53,7 @@ public class GameScreen extends ScreenAdapter {
 		mapViewer.updateCamera(player.getX(), player.getY());
 
 		Entity.updateAll(Gdx.graphics.getDeltaTime());
-		if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			mapViewer.unproject(vec);
-			map.getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
-		}
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-			mapViewer.unproject(vec);
-			player.useSelectedItem(vec.x, vec.y);
-		}
+
 		batch.setProjectionMatrix(mapViewer.getProjectionMatrix());
 		batch.begin();
 		map.render(batch, mapViewer.getX(), mapViewer.getY());
