@@ -29,11 +29,6 @@ public class LampItem extends Item {
     }
 
     @Override
-    public ItemEntity asEntity(float x, float y) {
-        return new ItemEntity(LAMP, this, x, y);
-    }
-
-    @Override
     public TextureRegion getTexture() {
         return LAMP;
     }

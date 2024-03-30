@@ -22,10 +22,6 @@ public class Pickaxe extends Item {
         return false;
     }
 
-    public ItemEntity asEntity(float x, float y) {
-        return new ItemEntity(PICKAXE, this, x, y);
-    }
-
     public TextureRegion getTexture() {
         return PICKAXE;
     }

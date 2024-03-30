@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import game.tiles.entities.Alien;
 import game.tiles.items.LampItem;
 import game.tiles.tiles.Map;
 import game.tiles.entities.Entity;
@@ -37,6 +38,8 @@ public class GameScreen extends ScreenAdapter {
 		mapViewer = MapViewer.getInstance();
 		Entity.setBatch(batch);
 		TileValueUpdater.getInstance().updateAll();
+
+		new Alien(15, 15);
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override

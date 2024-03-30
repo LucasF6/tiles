@@ -1,10 +1,7 @@
 package game.tiles.entities;
 
-import com.badlogic.gdx.math.Rectangle;
-
-public class Enemy extends Entity {
+public class Enemy extends Entity implements Attackable {
     protected float health;
-    protected Rectangle hitbox = new Rectangle();
 
     public Enemy(float width, float height, float x, float y) {
         this.x = x;
@@ -13,6 +10,7 @@ public class Enemy extends Entity {
         hitbox.height = height;
     }
 
+    @Override
     public final void getHit(float damage) {
         health -= damage;
         if (health <= 0) {
@@ -23,7 +21,4 @@ public class Enemy extends Entity {
 
     public void onDeath() {}
 
-    public Rectangle getHitbox() {
-        return hitbox;
-    }
 }

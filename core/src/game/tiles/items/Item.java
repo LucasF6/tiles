@@ -21,7 +21,7 @@ public class Item {
     }
 
     public ItemEntity asEntity(float x, float y) {
-        return null;
+        return new ItemEntity(getTexture(), this, x, y);
     }
 
     public final String getName() {

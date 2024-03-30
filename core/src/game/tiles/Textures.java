@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import static com.badlogic.gdx.graphics.g2d.Animation.PlayMode.LOOP;
+
 public final class Textures {
 
     public static final class Tiles {
@@ -35,9 +37,10 @@ public final class Textures {
 
         public static final Texture ITEMS_TEXTURE = new Texture("items.png");
         public static final TextureRegion[] ITEMS = getHorizontalTextureRegionArray(ITEMS_TEXTURE,
-                0, 0, 64, 64, 2);
+                0, 0, 64, 64, 3);
         public static final TextureRegion LAMP = ITEMS[0];
         public static final TextureRegion PICKAXE = ITEMS[1];
+        public static final TextureRegion SWORD = ITEMS[2];
 
         static {
             FONT.setUseIntegerPositions(false);
@@ -58,10 +61,26 @@ public final class Textures {
                 getHorizontalTextureRegionArray(PLAYER_TEXTURE, 0, 128 * 3, 96, 128, 4));
 
         static {
-            PLAYER_DOWN.setPlayMode(Animation.PlayMode.LOOP);
-            PLAYER_UP.setPlayMode(Animation.PlayMode.LOOP);
-            PLAYER_RIGHT.setPlayMode(Animation.PlayMode.LOOP);
-            PLAYER_LEFT.setPlayMode(Animation.PlayMode.LOOP);
+            PLAYER_DOWN.setPlayMode(LOOP);
+            PLAYER_UP.setPlayMode(LOOP);
+            PLAYER_RIGHT.setPlayMode(LOOP);
+            PLAYER_LEFT.setPlayMode(LOOP);
+        }
+    }
+
+    public static final class Enemy {
+        public static final Texture ALIEN_TEXTURE = new Texture("alien.png");
+        public static final Animation<TextureRegion> ALIEN_LEFT = new Animation<TextureRegion>(0.25f,
+                getHorizontalTextureRegionArray(ALIEN_TEXTURE, 0, 0, 96, 128, 4));
+        public static final Animation<TextureRegion> ALIEN_RIGHT = new Animation<TextureRegion>(0.25f,
+                getHorizontalTextureRegionArray(ALIEN_TEXTURE, 0, 128, 96, 128, 4));
+        public static final Animation<TextureRegion> ALIEN_UP = new Animation<TextureRegion>(0.25f,
+                getHorizontalTextureRegionArray(ALIEN_TEXTURE, 0, 128 * 2, 96, 128, 4));
+
+        static {
+            ALIEN_LEFT.setPlayMode(LOOP);
+            ALIEN_RIGHT.setPlayMode(LOOP);
+            ALIEN_UP.setPlayMode(LOOP);
         }
     }
 
@@ -73,6 +92,7 @@ public final class Textures {
         Items.ITEMS_TEXTURE.dispose();
         Items.FONT.dispose();
         Player.PLAYER_TEXTURE.dispose();
+        Enemy.ALIEN_TEXTURE.dispose();
     }
 
     public static TextureRegion[] getHorizontalTextureRegionArray(Texture texture, int startX, int startY,

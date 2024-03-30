@@ -10,6 +10,7 @@ import game.tiles.controllers.DeveloperController;
 import game.tiles.items.Inventory;
 import game.tiles.items.Item;
 import game.tiles.items.Pickaxe;
+import game.tiles.items.Sword;
 import game.tiles.tiles.Map;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
@@ -27,7 +28,7 @@ public class Player extends Entity {
     private Inventory inventory = new Inventory();
 
     private Animation<TextureRegion> animation = PLAYER_DOWN;
-    private Controller controller = new DefaultController();
+    private Controller controller = new DeveloperController();
     private final long startTime = TimeUtils.millis();
 
     private final Map map = Map.getInstance();
@@ -36,6 +37,7 @@ public class Player extends Entity {
         x = 1;
         y = 1;
         inventory.addItem(new Pickaxe());
+        inventory.addItem(new Sword());
     }
 
     public static Player getInstance() {

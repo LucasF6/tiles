@@ -1,6 +1,7 @@
 package game.tiles.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 public class Entity {
@@ -9,6 +10,7 @@ public class Entity {
 
     protected float x;
     protected float y;
+    protected Rectangle hitbox = new Rectangle();
 
     public Entity() {
         entities.add(this);
@@ -22,10 +24,22 @@ public class Entity {
         entities.removeValue(this, true);
     }
 
+    public boolean overlaps(float x, float y) {
+        return hitbox.contains(x, y);
+    }
+
+    public float distanceToPlayer() {
+        return (float) Math.hypot(Player.getInstance().x - x, Player.getInstance().y - y);
+    }
+
     public static void updateAll(float deltaTime) {
         for (Entity entity : entities) {
             entity.update(deltaTime);
         }
+    }
+
+    public static Array<Entity> getEntities() {
+        return entities;
     }
 
     public static void setBatch(SpriteBatch batch) {
