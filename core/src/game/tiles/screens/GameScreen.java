@@ -38,6 +38,7 @@ public class GameScreen extends ScreenAdapter {
 		Entity.setBatch(batch);
 		TileValueUpdater.getInstance().updateAll();
 		new LampItem().asEntity(10, 10);
+		new LampItem().asEntity(10, 15);
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
@@ -66,7 +67,7 @@ public class GameScreen extends ScreenAdapter {
 		if (Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)) {
 			Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
 			mapViewer.unproject(vec);
-			map.getRightClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+			player.useSelectedItem(vec.x, vec.y);
 		}
 		batch.setProjectionMatrix(mapViewer.getProjectionMatrix());
 		batch.begin();

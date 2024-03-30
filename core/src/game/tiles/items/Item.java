@@ -4,13 +4,21 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import game.tiles.entities.ItemEntity;
 
 public class Item {
-    private final String name;
+    public static Item NONE = new Item("none", true);
 
-    public Item(String name) {
+    private final String name;
+    private final boolean stackable;
+
+    protected int count = 1;
+
+    public Item(String name, boolean stackable) {
         this.name = name;
+        this.stackable = stackable;
     }
 
-    public void use(float x, float y) {}
+    public boolean use(float x, float y) {
+        return false;
+    }
 
     public ItemEntity asEntity(float x, float y) {
         return null;
@@ -18,6 +26,10 @@ public class Item {
 
     public final String getName() {
         return name;
+    }
+
+    public final boolean isStackable() {
+        return stackable;
     }
 
     public TextureRegion getTexture() {

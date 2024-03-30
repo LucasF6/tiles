@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.items.Inventory;
 import game.tiles.items.Item;
+import game.tiles.items.Pickaxe;
 import game.tiles.tiles.Map;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
+import game.tiles.tiles.MapViewer;
 
 import static game.tiles.Textures.Player.*;
 
@@ -31,6 +33,7 @@ public class Player extends Entity {
     private Player() {
         x = 1;
         y = 1;
+        inventory.addItem(new Pickaxe());
     }
 
     public static Player getInstance() {
@@ -42,6 +45,17 @@ public class Player extends Entity {
 
     @Override
     public void update(float deltaTime) {
+        if (controller.getDrop()) {
+            inventory.dropSelectedItem(x, y - 0.4f);
+        }
+
+        boolean zoomIn = controller.zoomIn();
+        boolean zoomOut = controller.zoomOut();
+        if (zoomIn || zoomOut) {
+            MapViewer.getInstance().resizeWorld(
+                    deltaTime * ((zoomIn ? -4.0f : 0) + (zoomOut ? 4.0f : 0)));
+        }
+
         boolean left = controller.getLeft(); boolean right = controller.getRight();
         boolean up = controller.getUp(); boolean down = controller.getDown();
         float s = controller.getSprint() ? FAST_SPEED : NORMAL_SPEED;
@@ -95,6 +109,10 @@ public class Player extends Entity {
 
     public void switchSelectedItem(int amount) {
         inventory.switchSelectedItem(amount);
+    }
+
+    public void useSelectedItem(float x, float y) {
+        inventory.useSelectedItem(x, y);
     }
 
     public float getX() {

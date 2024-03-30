@@ -12,4 +12,10 @@ public interface Controller {
 
     boolean getSprint();
 
+    boolean getDrop();
+
+    boolean zoomIn();
+
+    boolean zoomOut();
+
 }

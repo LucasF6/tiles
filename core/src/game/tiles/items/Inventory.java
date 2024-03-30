@@ -1,26 +1,34 @@
 package game.tiles.items;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import game.tiles.entities.ItemEntity;
 import game.tiles.items.Item;
 
-import static game.tiles.Textures.Items.INVENTORY;
-import static game.tiles.Textures.Items.INVENTORY_SELECTION;
+import static game.tiles.Textures.Items.*;
 
 public class Inventory {
-    private Array<Item> inventory = new Array<>(10);
+    private Item[] inventory = new Item[10];
     private int selectedItem = 0;
 
     public Inventory() {
+        for (int i = 0; i < 10; i++) {
+            inventory[i] = Item.NONE;
+        }
     }
 
-    public void useSelectedItem(int x, int y) {
-        inventory.get(selectedItem).use(x, y);
+    public void useSelectedItem(float x, float y) {
+        if (inventory[selectedItem].use(x, y)) {
+            inventory[selectedItem] = Item.NONE;
+        }
     }
 
-    public void dropSelectedItem(int x, int y) {
-        inventory.removeIndex(selectedItem).asEntity(x, y);
+    public void dropSelectedItem(float x, float y) {
+        if (!inventory[selectedItem].getName().equals("none")) {
+            inventory[selectedItem].asEntity(x, y);
+            inventory[selectedItem] = Item.NONE;
+        }
     }
 
     public void switchSelectedItem(int amount) {
@@ -32,14 +40,30 @@ public class Inventory {
     }
 
     public void addItem(Item item) {
-        inventory.add(item);
+        if (item.isStackable()) {
+            for (int i = 0; i < 10; i++) {
+                if (item.getName().equals(inventory[i].getName())) {
+                    inventory[i].count++;
+                    return;
+                }
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            if (inventory[i].getName().equals("none")) {
+                inventory[i] = item;
+                return;
+            }
+        }
     }
 
     public void draw(SpriteBatch batch) {
         batch.draw(INVENTORY, -3.75f, -4.5f, 7.5f, 0.75f);
-        for (int i = 0; i < inventory.size; i++) {
-            if (inventory.get(i) != null) {
-                batch.draw(inventory.get(i).getTexture(), -3.625f + 0.75f * i, -4.375f, 0.5f, 0.5f);
+        for (int i = 0; i < 10; i++) {
+            if (!inventory[i].getName().equals("none")) {
+                batch.draw(inventory[i].getTexture(), -3.625f + 0.75f * i, -4.375f, 0.5f, 0.5f);
+                if (inventory[i].isStackable()) {
+                    FONT.draw(batch, String.valueOf(inventory[i].count), -3.425f + 0.75f * i, -4.5f);
+                }
             }
         }
         batch.draw(INVENTORY_SELECTION, -3.75f + 0.75f * selectedItem, -4.5f, 0.75f, 0.75f);

@@ -15,4 +15,14 @@ public class BackgroundTile extends ValueTile {
         return texture;
     }
 
+    @Override
+    public final boolean isSolid(float leftX, float rightX, float y) {
+        return false;
+    }
+
+    @Override
+    public final boolean isSolid(float x, float y) {
+        return false;
+    }
+
 }

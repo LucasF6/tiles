@@ -32,4 +32,19 @@ public class DefaultController implements Controller {
         return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
     }
 
+    @Override
+    public boolean getDrop() {
+        return Gdx.input.isKeyJustPressed(Input.Keys.Q);
+    }
+
+    @Override
+    public boolean zoomIn() {
+        return Gdx.input.isKeyPressed(Input.Keys.P);
+    }
+
+    @Override
+    public boolean zoomOut() {
+        return Gdx.input.isKeyPressed(Input.Keys.O);
+    }
+
 }

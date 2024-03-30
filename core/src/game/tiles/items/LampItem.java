@@ -13,17 +13,19 @@ import static game.tiles.Textures.Items.LAMP;
 public class LampItem extends Item {
 
     public LampItem() {
-        super("lamp");
+        super("lamp", true);
     }
 
     @Override
-    public void use(float x, float y) {
+    public boolean use(float x, float y) {
         int i = MathUtils.floor(x);
         int j = MathUtils.floor(y);
         Tile currentTile = Map.getInstance().getTile(i, j);
         if (currentTile instanceof BackgroundTile) {
             Map.getInstance().setTile(new LampTile(currentTile.getTexture(), i, j));
+            count--;
         }
+        return count == 0;
     }
 
     @Override
