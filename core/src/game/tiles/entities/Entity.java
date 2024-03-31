@@ -3,6 +3,7 @@ package game.tiles.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import game.tiles.tiles.MapViewer;
 
 public class Entity {
     private static Array<Entity> entities = new Array<>();
@@ -48,7 +49,9 @@ public class Entity {
 
     public static void drawAll() {
         for (Entity entity : entities) {
-            entity.draw(batch);
+            if (MapViewer.getInstance().getVisibleRectangle().overlaps(entity.hitbox)) {
+                entity.draw(batch);
+            }
         }
     }
 

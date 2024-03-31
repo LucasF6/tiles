@@ -30,23 +30,12 @@ public final class Textures {
     }
 
     public static final class Items {
-        public static final Texture INVENTORY = new Texture("inventory.png");
-        public static final Texture INVENTORY_SELECTION = new Texture("inventory-selection.png");
-
-        public static final BitmapFont FONT = new BitmapFont();
-
         public static final Texture ITEMS_TEXTURE = new Texture("items.png");
         public static final TextureRegion[] ITEMS = getHorizontalTextureRegionArray(ITEMS_TEXTURE,
                 0, 0, 64, 64, 3);
         public static final TextureRegion LAMP = ITEMS[0];
         public static final TextureRegion PICKAXE = ITEMS[1];
         public static final TextureRegion SWORD = ITEMS[2];
-
-        static {
-            FONT.setUseIntegerPositions(false);
-            FONT.setColor(0, 0, 0, 1);
-            FONT.getData().setScale(0.015f);
-        }
     }
 
     public static final class Player {
@@ -84,15 +73,43 @@ public final class Textures {
         }
     }
 
+    public static final class Effects {
+        public static final Texture BOOM_TEXTURE = new Texture("boom.png");
+        public static final Animation<TextureRegion> BOOM = new Animation<TextureRegion>(0.25f,
+                getHorizontalTextureRegionArray(BOOM_TEXTURE, 0, 0, 64, 64, 4));
+    }
+
+    public static final class Overlay {
+        public static final Texture INVENTORY = new Texture("inventory.png");
+        public static final Texture INVENTORY_SELECTION = new Texture("inventory-selection.png");
+
+        public static final BitmapFont FONT = new BitmapFont();
+
+        public static final Texture HEART_TEXTURE = new Texture("life.png");
+        public static final Animation<TextureRegion> LIVING_HEART = new Animation<TextureRegion>(0.5f,
+                getHorizontalTextureRegionArray(HEART_TEXTURE, 0, 0, 64, 64, 2));
+        public static final TextureRegion DEAD_HEART = new TextureRegion(HEART_TEXTURE, 128, 0, 64, 64);
+
+        static {
+            FONT.setUseIntegerPositions(false);
+            FONT.setColor(0, 0, 0, 1);
+            FONT.getData().setScale(0.015f);
+
+            LIVING_HEART.setPlayMode(LOOP);
+        }
+    }
+
     public static void dispose() {
         Tiles.TILES_TEXTURE.dispose();
         Tiles.NUMBERS_TEXTURE.dispose();
-        Items.INVENTORY.dispose();
-        Items.INVENTORY_SELECTION.dispose();
+        Overlay.INVENTORY.dispose();
+        Overlay.INVENTORY_SELECTION.dispose();
         Items.ITEMS_TEXTURE.dispose();
-        Items.FONT.dispose();
+        Overlay.FONT.dispose();
         Player.PLAYER_TEXTURE.dispose();
         Enemy.ALIEN_TEXTURE.dispose();
+        Overlay.HEART_TEXTURE.dispose();
+        Effects.BOOM_TEXTURE.dispose();
     }
 
     public static TextureRegion[] getHorizontalTextureRegionArray(Texture texture, int startX, int startY,

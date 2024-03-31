@@ -19,6 +19,10 @@ public class Enemy extends Entity implements Attackable {
         }
     }
 
+    protected final void hitPlayer(float damage) {
+        Player.getInstance().changeHealth(-damage);
+    }
+
     public void onDeath() {}
 
 }

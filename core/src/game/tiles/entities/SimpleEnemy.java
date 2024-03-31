@@ -42,7 +42,7 @@ public class SimpleEnemy extends Enemy {
         float speed = getSpeed();
         x += deltaTime * speed * MathUtils.cos(direction);
         y += deltaTime * speed * MathUtils.sin(direction);
-        hitbox.x = x;
+        hitbox.x = x - hitbox.width / 2;
         hitbox.y = y;
     }
 
@@ -59,7 +59,7 @@ public class SimpleEnemy extends Enemy {
     }
 
     protected void draw(SpriteBatch batch) {
-        batch.draw(texture, x, y, hitbox.width, hitbox.height);
+        batch.draw(texture, hitbox.x, hitbox.y, hitbox.width, hitbox.height);
     }
 
 

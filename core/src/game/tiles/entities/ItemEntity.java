@@ -52,9 +52,7 @@ public class ItemEntity extends Entity {
     }
 
     protected final void draw(SpriteBatch batch) {
-        if (MapViewer.getInstance().getVisibleRectangle().overlaps(hitbox)) {
-            batch.draw(getTexture(), hitbox.x, hitbox.y, 0.5f, 0.5f);
-        }
+        batch.draw(getTexture(), hitbox.x, hitbox.y, 0.5f, 0.5f);
     }
 
     protected TextureRegion getTexture() {

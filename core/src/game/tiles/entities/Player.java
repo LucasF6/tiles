@@ -16,6 +16,8 @@ import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
 import game.tiles.tiles.MapViewer;
 
+import static game.tiles.Textures.Overlay.DEAD_HEART;
+import static game.tiles.Textures.Overlay.LIVING_HEART;
 import static game.tiles.Textures.Player.*;
 
 public class Player extends Entity {
@@ -26,6 +28,7 @@ public class Player extends Entity {
     private static Player instance;
 
     private Inventory inventory = new Inventory();
+    private int health = 10;
 
     private Animation<TextureRegion> animation = PLAYER_DOWN;
     private Controller controller = new DeveloperController();
@@ -36,7 +39,11 @@ public class Player extends Entity {
     private Player() {
         x = 1;
         y = 1;
-        inventory.addItem(new Pickaxe());
+        hitbox.x = x - 0.75f / 2;
+        hitbox.y = y;
+        hitbox.width = 0.75f;
+        hitbox.height = 1.0f;
+
         inventory.addItem(new Sword());
     }
 
@@ -104,6 +111,9 @@ public class Player extends Entity {
         } else if (!map.isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, y)) {
             x = projX;
         }
+
+        hitbox.x = x - 0.75f / 2;
+        hitbox.y = y;
     }
 
     @Override
@@ -113,6 +123,24 @@ public class Player extends Entity {
 
     public void drawInventory(SpriteBatch batch) {
         inventory.draw(batch);
+    }
+
+    public void drawHealth(SpriteBatch batch) {
+        for (int i = 0; i < 10; i++) {
+            if (i <= health) {
+                batch.draw(LIVING_HEART.getKeyFrame((float) TimeUtils.timeSinceMillis(startTime) / 1000 + 0.1f * i), -5, -5 + 0.5f * i, 0.5f, 0.5f);
+            } else {
+                batch.draw(DEAD_HEART, -5, -5 + 0.5f * i, 0.5f, 0.5f);
+            }
+        }
+    }
+
+    public float getHealth() {
+        return health;
+    }
+
+    public void changeHealth(float amount) {
+        health += amount;
     }
 
     public TextureRegion getTextureRegion() {

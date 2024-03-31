@@ -3,8 +3,10 @@ package game.tiles.items;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import game.tiles.entities.Attackable;
+import game.tiles.entities.Effect;
 import game.tiles.entities.Entity;
 
+import static game.tiles.Textures.Effects.BOOM;
 import static game.tiles.Textures.Items.SWORD;
 
 public class Sword extends Item {
@@ -17,6 +19,7 @@ public class Sword extends Item {
         for (int i = 0; i < entities.size; i++) {
             if (entities.get(i) instanceof Attackable && entities.get(i).overlaps(x, y)) {
                 ((Attackable) entities.get(i)).getHit(1.0f);
+                new Effect(x, y, 0.5f, 0.5f, BOOM);
             }
         }
         return false;

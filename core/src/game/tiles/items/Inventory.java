@@ -7,6 +7,7 @@ import game.tiles.entities.ItemEntity;
 import game.tiles.items.Item;
 
 import static game.tiles.Textures.Items.*;
+import static game.tiles.Textures.Overlay.*;
 
 public class Inventory {
     private Item[] inventory = new Item[10];
