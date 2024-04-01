@@ -103,6 +103,20 @@ public class TileValueUpdater {
         }
     }
 
+    public int getTileValue(int x, int y) {
+        if (x >= 0 && y >= 0 && x < SIZE && y < SIZE && tiles[x][y] != null) {
+            return tiles[x][y].getValue();
+        }
+        return -1;
+    }
+
+    public ValueTile getValueTile(int x, int y) {
+        if (x >= 0 && y >= 0 && x < SIZE && y < SIZE) {
+            return tiles[x][y];
+        }
+        return null;
+    }
+
     private static class Point {
         public int x;
         public int y;

@@ -32,10 +32,11 @@ public final class Textures {
     public static final class Items {
         public static final Texture ITEMS_TEXTURE = new Texture("items.png");
         public static final TextureRegion[] ITEMS = getHorizontalTextureRegionArray(ITEMS_TEXTURE,
-                0, 0, 64, 64, 3);
+                0, 0, 64, 64, 4);
         public static final TextureRegion LAMP = ITEMS[0];
         public static final TextureRegion PICKAXE = ITEMS[1];
         public static final TextureRegion SWORD = ITEMS[2];
+        public static final TextureRegion CLEANER = ITEMS[3];
     }
 
     public static final class Player {
@@ -66,10 +67,25 @@ public final class Textures {
         public static final Animation<TextureRegion> ALIEN_UP = new Animation<TextureRegion>(0.25f,
                 getHorizontalTextureRegionArray(ALIEN_TEXTURE, 0, 128 * 2, 96, 128, 4));
 
+        public static final Texture NUMBER_SUCKER_TEXTURE = new Texture("number-sucker.png");
+        public static final Animation<TextureRegion> NUMBER_SUCKER_TWO = new Animation<TextureRegion>(0.5f,
+                getVerticalTextureRegionArray(NUMBER_SUCKER_TEXTURE, 0, 0, 128, 128, 2));
+        public static final Animation<TextureRegion> NUMBER_SUCKER_THREE = new Animation<TextureRegion>(0.5f,
+                getVerticalTextureRegionArray(NUMBER_SUCKER_TEXTURE, 128, 0, 128, 128, 2));
+        public static final Animation<TextureRegion> NUMBER_SUCKER_FOUR = new Animation<TextureRegion>(0.5f,
+                getVerticalTextureRegionArray(NUMBER_SUCKER_TEXTURE, 128 * 2, 0, 128, 128, 2));
+        public static final Animation<TextureRegion> NUMBER_SUCKER_FIVE = new Animation<TextureRegion>(0.5f,
+                getVerticalTextureRegionArray(NUMBER_SUCKER_TEXTURE, 128 * 3, 0, 128, 128, 2));
+
         static {
             ALIEN_LEFT.setPlayMode(LOOP);
             ALIEN_RIGHT.setPlayMode(LOOP);
             ALIEN_UP.setPlayMode(LOOP);
+
+            NUMBER_SUCKER_TWO.setPlayMode(LOOP);
+            NUMBER_SUCKER_THREE.setPlayMode(LOOP);
+            NUMBER_SUCKER_FOUR.setPlayMode(LOOP);
+            NUMBER_SUCKER_FIVE.setPlayMode(LOOP);
         }
     }
 
@@ -110,6 +126,7 @@ public final class Textures {
         Enemy.ALIEN_TEXTURE.dispose();
         Overlay.HEART_TEXTURE.dispose();
         Effects.BOOM_TEXTURE.dispose();
+        Enemy.NUMBER_SUCKER_TEXTURE.dispose();
     }
 
     public static TextureRegion[] getHorizontalTextureRegionArray(Texture texture, int startX, int startY,
@@ -131,7 +148,7 @@ public final class Textures {
         }
         TextureRegion[] list = new TextureRegion[num];
         for (int i = 0; i < num; i++) {
-            list[i] = new TextureRegion(texture, startX + width, startY + i * height, width, height);
+            list[i] = new TextureRegion(texture, startX, startY + i * height, width, height);
         }
         return list;
     }

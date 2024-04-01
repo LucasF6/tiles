@@ -5,7 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import game.tiles.TileValueUpdater;
+import game.tiles.entities.Alien;
+import game.tiles.entities.NumberSucker;
 import game.tiles.items.LampItem;
+import game.tiles.items.Pickaxe;
+import game.tiles.items.Sword;
 
 import static game.tiles.Constants.Map.*;
 import static game.tiles.Textures.Tiles.STONE_BACKGROUND;
@@ -17,19 +21,8 @@ public class Map {
     private float offset = 5;
 
     private Map() {
-        /**
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                tiles[i][j] = new GrassTile(i, j);
-            }
-        }
-        tiles[5][10] = new StoneTile(5, 10);
-        tiles[5][11] = new LampTile(STONE_BACKGROUND, 5, 11);
-        tiles[6][11] = new StoneTile(6, 11);
-        tiles[5][12] = new WoodTile(5, 12);
-        */
         JsonReader reader = new JsonReader();
-        JsonValue map = reader.parse(new FileHandle("map.json"));
+        JsonValue map = reader.parse(new FileHandle("map0.json"));
         for (int i = 0; i < SIZE; i++) {
             int[] row = map.get(i).asIntArray();
             for (int j = 0; j < SIZE; j++) {
@@ -52,7 +45,13 @@ public class Map {
                 }
             }
         }
-        tiles[46][15] = new LockedTile(5, new LampItem(), 46, 15);
+        new NumberSucker(7, 7, 3,
+                3, 1, 1, 2, 2, 0, -1, -1, -1, -1);
+        new NumberSucker(7, 6, 3,
+                3, -1, -1, -1, -1, 0, 1, 1, 2, 2);
+        tiles[8][6] = new LockedTile(4, new Sword(), 8, 6);
+
+        new Alien(14, 2, new Pickaxe());
     }
 
     public static Map getInstance() {

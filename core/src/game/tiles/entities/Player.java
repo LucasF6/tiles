@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.controllers.DeveloperController;
-import game.tiles.items.Inventory;
-import game.tiles.items.Item;
-import game.tiles.items.Pickaxe;
-import game.tiles.items.Sword;
+import game.tiles.items.*;
 import game.tiles.tiles.Map;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
@@ -28,7 +25,7 @@ public class Player extends Entity {
     private static Player instance;
 
     private Inventory inventory = new Inventory();
-    private int health = 10;
+    private float health = 10;
 
     private Animation<TextureRegion> animation = PLAYER_DOWN;
     private Controller controller = new DeveloperController();
@@ -39,12 +36,12 @@ public class Player extends Entity {
     private Player() {
         x = 1;
         y = 1;
-        hitbox.x = x - 0.75f / 2;
+        hitbox.x = x - 0.3f / 2;
         hitbox.y = y;
-        hitbox.width = 0.75f;
-        hitbox.height = 1.0f;
+        hitbox.width = 0.3f;
+        hitbox.height = 0.3f;
 
-        inventory.addItem(new Sword());
+        inventory.addItem(new Cleaner());
     }
 
     public static Player getInstance() {
@@ -112,7 +109,7 @@ public class Player extends Entity {
             x = projX;
         }
 
-        hitbox.x = x - 0.75f / 2;
+        hitbox.x = x - 0.3f / 2;
         hitbox.y = y;
     }
 

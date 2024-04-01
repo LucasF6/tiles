@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import game.tiles.entities.Alien;
+import game.tiles.entities.NumberSucker;
 import game.tiles.items.LampItem;
 import game.tiles.items.Pickaxe;
 import game.tiles.tiles.Map;
@@ -34,15 +35,6 @@ public class GameScreen extends ScreenAdapter {
 		mapViewer = MapViewer.getInstance();
 		Entity.setBatch(batch);
 		TileValueUpdater.getInstance().updateAll();
-
-		new Alien(15, 15, new Pickaxe());
-		new Alien(12, 15, new Pickaxe());
-		new Alien(15, 12, new LampItem());
-		new Alien(12, 12, new LampItem());
-		new Alien(9, 12, new LampItem());
-		new Alien(12, 9, new LampItem());
-		new Alien(9, 9, new LampItem());
-		new Alien(9, 15, new LampItem());
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
 			@Override
