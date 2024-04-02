@@ -40,6 +40,9 @@ public class Player extends Entity {
         hitbox.height = 0.3f;
 
         inventory.addItem(new Cleaner());
+        inventory.addItem(new Pickaxe());
+        inventory.addItem(new Sword());
+        inventory.addItem(new Key("key"));
     }
 
     public static Player getInstance() {

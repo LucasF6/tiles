@@ -12,17 +12,18 @@ public final class Textures {
     public static final class Tiles {
         public static final Texture TILES_TEXTURE = new Texture("tiles.png");
         public static final TextureRegion[] TILES = getHorizontalTextureRegionArray(TILES_TEXTURE,
-                0, 0, 128, 128, 10);
+                0, 0, 128, 128, 11);
         public static final TextureRegion GRASS = TILES[0];
         public static final TextureRegion STONE_BACKGROUND = TILES[1];
         public static final TextureRegion STONE = TILES[2];
         public static final TextureRegion WOOD = TILES[3];
         public static final TextureRegion LAMP_OFF = TILES[4];
         public static final TextureRegion LAMP_ON = TILES[5];
-        public static final TextureRegion LOCKED_TWO = TILES[6];
-        public static final TextureRegion LOCKED_THREE = TILES[7];
-        public static final TextureRegion LOCKED_FOUR = TILES[8];
-        public static final TextureRegion LOCKED_FIVE = TILES[9];
+        public static final TextureRegion SECRET_TWO = TILES[6];
+        public static final TextureRegion SECRET_THREE = TILES[7];
+        public static final TextureRegion SECRET_FOUR = TILES[8];
+        public static final TextureRegion SECRET_FIVE = TILES[9];
+        public static final TextureRegion LOCK = TILES[10];
 
         public static final Texture NUMBERS_TEXTURE = new Texture("numbers.png");
         public static final TextureRegion[] NUMBERS = getHorizontalTextureRegionArray(NUMBERS_TEXTURE,
@@ -32,11 +33,12 @@ public final class Textures {
     public static final class Items {
         public static final Texture ITEMS_TEXTURE = new Texture("items.png");
         public static final TextureRegion[] ITEMS = getHorizontalTextureRegionArray(ITEMS_TEXTURE,
-                0, 0, 64, 64, 4);
+                0, 0, 64, 64, 5);
         public static final TextureRegion LAMP = ITEMS[0];
         public static final TextureRegion PICKAXE = ITEMS[1];
         public static final TextureRegion SWORD = ITEMS[2];
         public static final TextureRegion CLEANER = ITEMS[3];
+        public static final TextureRegion KEY = ITEMS[4];
     }
 
     public static final class Player {

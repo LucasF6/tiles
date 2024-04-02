@@ -5,12 +5,12 @@ import game.tiles.items.Item;
 
 import static game.tiles.Textures.Tiles.*;
 
-public class LockedTile extends ValueTile {
+public class SecretTile extends ValueTile {
     private final int number;
     private TextureRegion texture;
     private final Item item;
 
-    public LockedTile(int number, Item item, int x, int y) {
+    public SecretTile(int number, Item item, int x, int y) {
         super(x, y);
         this.number = number;
         if (number < 2 || number > 5) {
@@ -19,16 +19,16 @@ public class LockedTile extends ValueTile {
         this.item = item;
         switch (number) {
             case 2:
-                texture = LOCKED_TWO;
+                texture = SECRET_TWO;
                 break;
             case 3:
-                texture = LOCKED_THREE;
+                texture = SECRET_THREE;
                 break;
             case 4:
-                texture = LOCKED_FOUR;
+                texture = SECRET_FOUR;
                 break;
             case 5:
-                texture = LOCKED_FIVE;
+                texture = SECRET_FIVE;
                 break;
         }
     }
