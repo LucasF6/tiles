@@ -32,14 +32,14 @@ public class Alien extends SimpleEnemy {
 
         } else if (!Map.getInstance().isBlocked(prevX - 0.3f / 2, prevX + 0.3f / 2, y)) {
             x = prevX;
-            hitbox.x = x;
+            hitbox.x = x - hitbox.width / 2;
         } else if (!Map.getInstance().isBlocked(x - 0.75f / 2, x + 0.75f / 2, prevY)) {
             y = prevY;
             hitbox.y = y;
         } else {
             x = prevX;
             y = prevY;
-            hitbox.x = x;
+            hitbox.x = x - hitbox.width / 2;
             hitbox.y = y;
         }
 

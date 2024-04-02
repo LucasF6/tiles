@@ -10,9 +10,6 @@ import game.tiles.tiles.Map;
 import game.tiles.tiles.MapViewer;
 
 public class ItemEntity extends Entity {
-    private static Map map = Map.getInstance();
-    private static Player player = Player.getInstance();
-
     private TextureRegion texture;
     private Item item;
     private boolean attractPlayer = false;
@@ -30,13 +27,13 @@ public class ItemEntity extends Entity {
     }
 
     protected void update(float deltaTime) {
-        double distanceToPlayer = Math.hypot(player.x - x, player.y - y);
+        double distanceToPlayer = Math.hypot(Player.getInstance().x - x, Player.getInstance().y - y);
         if (distanceToPlayer < 0.3) {
-            player.addItem(item);
+            Player.getInstance().addItem(item);
             delete();
         } else if (distanceToPlayer < 1.2) {
             if (attractPlayer) {
-                direction = MathUtils.atan2(player.y - y, player.x - x);
+                direction = MathUtils.atan2(Player.getInstance().y - y, Player.getInstance().x - x);
                 speed = 0.4f;
             } else {
                 speed = 0;

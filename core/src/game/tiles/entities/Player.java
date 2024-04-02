@@ -31,8 +31,6 @@ public class Player extends Entity {
     private Controller controller = new DeveloperController();
     private final long startTime = TimeUtils.millis();
 
-    private final Map map = Map.getInstance();
-
     private Player() {
         x = 1;
         y = 1;
@@ -47,6 +45,7 @@ public class Player extends Entity {
     public static Player getInstance() {
         if (instance == null) {
             instance = new Player();
+            System.out.println("player returned");
         }
         return instance;
     }
@@ -60,7 +59,8 @@ public class Player extends Entity {
         if (controller.updateTile()) {
             Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             MapViewer.getInstance().unproject(vec);
-            map.getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+            Map.getInstance().getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
+            System.out.println((int) Math.floor(vec.x) + " " + (int) Math.floor(vec.y));
         }
 
         if (controller.useItem()) {
@@ -100,12 +100,12 @@ public class Player extends Entity {
             projX += s * deltaTime;
             animation = PLAYER_RIGHT;
         }
-        if (!map.isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, projY)) {
+        if (!Map.getInstance().isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, projY)) {
             x = projX;
             y = projY;
-        } else if (!map.isBlocked(x - 0.3f / 2, x + 0.3f / 2, projY)) {
+        } else if (!Map.getInstance().isBlocked(x - 0.3f / 2, x + 0.3f / 2, projY)) {
             y = projY;
-        } else if (!map.isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, y)) {
+        } else if (!Map.getInstance().isBlocked(projX - 0.3f / 2, projX + 0.3f / 2, y)) {
             x = projX;
         }
 

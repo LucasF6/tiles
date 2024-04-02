@@ -50,13 +50,14 @@ public class Map {
         new NumberSucker(7, 6, 3,
                 3, -1, -1, -1, -1, 0, 1, 1, 2, 2);
         tiles[8][6] = new LockedTile(4, new Sword(), 8, 6);
-
+        tiles[26][6] = new LockedTile(5, new LampItem(), 26, 6);
         new Alien(14, 2, new Pickaxe());
     }
 
     public static Map getInstance() {
         if (instance == null) {
             instance = new Map();
+            System.out.println("map returned");
         }
         return instance;
     }
