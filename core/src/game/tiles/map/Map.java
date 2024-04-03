@@ -1,15 +1,20 @@
-package game.tiles.tiles;
+package game.tiles.map;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import game.tiles.TileValueUpdater;
+import com.badlogic.gdx.utils.JsonWriter;
 import game.tiles.entities.Alien;
 import game.tiles.entities.NumberSucker;
-import game.tiles.items.LampItem;
 import game.tiles.items.Pickaxe;
 import game.tiles.items.Sword;
+import game.tiles.tiles.*;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 import static game.tiles.Constants.Map.*;
 import static game.tiles.Textures.Tiles.STONE_BACKGROUND;
@@ -52,6 +57,7 @@ public class Map {
         tiles[8][6] = new SecretTile(4, new Sword(), 8, 6);
         tiles[26][6] = new LockTile("key", 26, 6);
         new Alien(14, 2, new Pickaxe());
+        
     }
 
     public static Map getInstance() {

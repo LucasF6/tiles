@@ -3,7 +3,7 @@ package game.tiles.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import game.tiles.Tiles;
+import game.tiles.screens.Tiles;
 
 public class HtmlLauncher extends GwtApplication {
 

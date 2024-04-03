@@ -1,10 +1,8 @@
 package game.tiles.entities;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.items.Item;
-import game.tiles.tiles.Map;
+import game.tiles.map.Map;
 
 import static game.tiles.Textures.Enemy.*;
 

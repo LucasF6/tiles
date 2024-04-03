@@ -1,7 +1,6 @@
-package game.tiles;
+package game.tiles.map;
 
 import com.badlogic.gdx.utils.Array;
-import game.tiles.tiles.Map;
 import game.tiles.tiles.Tile;
 import game.tiles.tiles.ValueTile;
 

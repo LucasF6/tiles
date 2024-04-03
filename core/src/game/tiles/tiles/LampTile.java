@@ -2,7 +2,7 @@ package game.tiles.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import game.tiles.TileValueUpdater;
+import game.tiles.map.TileValueUpdater;
 
 import static game.tiles.Textures.Tiles.LAMP_OFF;
 import static game.tiles.Textures.Tiles.LAMP_ON;

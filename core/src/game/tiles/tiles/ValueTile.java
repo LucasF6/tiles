@@ -1,7 +1,7 @@
 package game.tiles.tiles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import game.tiles.TileValueUpdater;
+import game.tiles.map.TileValueUpdater;
 
 import static game.tiles.Textures.Tiles.NUMBERS;
 

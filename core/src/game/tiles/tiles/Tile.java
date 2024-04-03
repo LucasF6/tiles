@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import static game.tiles.Textures.Tiles.GRASS;
 
 public class Tile {
-    protected int x;
-    protected int y;
+    public final int x;
+    public final int y;
 
     public Tile(int x, int y) {
         this.x = x;

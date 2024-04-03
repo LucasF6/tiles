@@ -2,7 +2,7 @@ package game.tiles.items;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import game.tiles.entities.ItemEntity;
+import game.tiles.map.Map;
 import game.tiles.tiles.*;
 
 import static game.tiles.Textures.Items.PICKAXE;

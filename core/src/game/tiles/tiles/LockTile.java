@@ -1,7 +1,7 @@
 package game.tiles.tiles;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import game.tiles.items.Key;
+import game.tiles.map.Map;
 
 import static game.tiles.Textures.Tiles.LOCK;
 

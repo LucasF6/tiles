@@ -3,7 +3,7 @@ package game.tiles.items;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import game.tiles.tiles.LockTile;
-import game.tiles.tiles.Map;
+import game.tiles.map.Map;
 import game.tiles.tiles.Tile;
 
 import static game.tiles.Textures.Items.KEY;

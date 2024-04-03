@@ -8,16 +8,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import game.tiles.entities.Alien;
-import game.tiles.entities.NumberSucker;
-import game.tiles.items.LampItem;
-import game.tiles.items.Pickaxe;
-import game.tiles.tiles.Map;
+import game.tiles.map.Map;
 import game.tiles.entities.Entity;
 import game.tiles.entities.Player;
-import game.tiles.TileValueUpdater;
-import game.tiles.Tiles;
-import game.tiles.tiles.MapViewer;
+import game.tiles.map.TileValueUpdater;
+import game.tiles.map.MapViewer;
 
 public class GameScreen extends ScreenAdapter {
 	SpriteBatch batch;

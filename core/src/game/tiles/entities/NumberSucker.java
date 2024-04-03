@@ -3,9 +3,8 @@ package game.tiles.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import game.tiles.TileValueUpdater;
+import game.tiles.map.TileValueUpdater;
 import game.tiles.items.Item;
 
 import static game.tiles.Textures.Enemy.*;

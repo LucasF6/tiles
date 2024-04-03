@@ -1,5 +1,7 @@
 package game.tiles.tiles;
 
+import game.tiles.map.Map;
+
 import static game.tiles.Textures.Tiles.STONE;
 
 public class StoneTile extends BlockTile implements Breakable {

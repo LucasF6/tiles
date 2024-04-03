@@ -3,11 +3,7 @@ package game.tiles.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.items.Item;
-import game.tiles.tiles.Map;
-import game.tiles.tiles.MapViewer;
 
 public class ItemEntity extends Entity {
     private TextureRegion texture;

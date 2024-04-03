@@ -1,4 +1,4 @@
-package game.tiles.tiles;
+package game.tiles.map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

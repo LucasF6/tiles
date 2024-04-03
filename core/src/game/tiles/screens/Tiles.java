@@ -1,7 +1,8 @@
-package game.tiles;
+package game.tiles.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import game.tiles.Textures;
 import game.tiles.controllers.Controller;
 import game.tiles.controllers.DefaultController;
 import game.tiles.screens.MainMenuScreen;

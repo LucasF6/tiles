@@ -2,7 +2,7 @@ package game.tiles.items;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import game.tiles.TileValueUpdater;
+import game.tiles.map.TileValueUpdater;
 
 import static game.tiles.Textures.Items.CLEANER;
 

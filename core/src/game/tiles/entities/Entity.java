@@ -3,7 +3,7 @@ package game.tiles.entities;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import game.tiles.tiles.MapViewer;
+import game.tiles.map.MapViewer;
 
 public class Entity {
     private static Array<Entity> entities = new Array<>();

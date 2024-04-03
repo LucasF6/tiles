@@ -8,18 +8,17 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.controllers.DeveloperController;
 import game.tiles.items.*;
-import game.tiles.tiles.Map;
+import game.tiles.map.Map;
 import game.tiles.controllers.Controller;
-import game.tiles.controllers.DefaultController;
-import game.tiles.tiles.MapViewer;
+import game.tiles.map.MapViewer;
 
 import static game.tiles.Textures.Overlay.DEAD_HEART;
 import static game.tiles.Textures.Overlay.LIVING_HEART;
 import static game.tiles.Textures.Player.*;
 
 public class Player extends Entity {
-    private static final float NORMAL_SPEED = 2; // 2
-    private static final float FAST_SPEED = 5;   // 5
+    private static final float NORMAL_SPEED = 2;
+    private static final float FAST_SPEED = 5;
     private static final float DIAGONAL_SCALAR = (float) Math.pow(0.5, 0.5);
 
     private static Player instance;
@@ -63,7 +62,6 @@ public class Player extends Entity {
             Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             MapViewer.getInstance().unproject(vec);
             Map.getInstance().getLeftClicked((int) Math.floor(vec.x), (int) Math.floor(vec.y));
-            System.out.println((int) Math.floor(vec.x) + " " + (int) Math.floor(vec.y));
         }
 
         if (controller.useItem()) {
