@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Tiles");
 		config.setWindowedMode(800, 800);
-		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
+		// config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new Tiles(), config);
 	}
 }

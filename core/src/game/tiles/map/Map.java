@@ -1,5 +1,6 @@
 package game.tiles.map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
@@ -27,7 +28,7 @@ public class Map {
 
     private Map() {
         JsonReader reader = new JsonReader();
-        JsonValue map = reader.parse(new FileHandle("map0.json"));
+        JsonValue map = reader.parse(Gdx.files.internal("map0.json"));
         for (int i = 0; i < SIZE; i++) {
             int[] row = map.get(i).asIntArray();
             for (int j = 0; j < SIZE; j++) {
@@ -57,7 +58,7 @@ public class Map {
         tiles[8][6] = new SecretTile(4, new Sword(), 8, 6);
         tiles[26][6] = new LockTile("key", 26, 6);
         new Alien(14, 2, new Pickaxe());
-        
+
     }
 
     public static Map getInstance() {

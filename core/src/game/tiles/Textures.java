@@ -9,6 +9,19 @@ import static com.badlogic.gdx.graphics.g2d.Animation.PlayMode.LOOP;
 
 public final class Textures {
 
+    public static final class MainMenu {
+        public static final Texture PLAY_TEXTURE = new Texture("play-button.png");
+        public static final Texture SETTINGS_TEXTURE = new Texture("settings-button.png");
+        public static final Texture CREDITS_TEXTURE = new Texture("credits-button.png");
+
+        public static final TextureRegion PLAY_UNLIT = new TextureRegion(PLAY_TEXTURE, 0, 0, 600, 250);
+        public static final TextureRegion PLAY_LIT = new TextureRegion(PLAY_TEXTURE, 0, 250, 600, 250);
+        public static final TextureRegion SETTINGS_UNLIT = new TextureRegion(SETTINGS_TEXTURE, 0, 0, 250, 100);
+        public static final TextureRegion SETTINGS_LIT = new TextureRegion(SETTINGS_TEXTURE, 0, 100, 250, 100);
+        public static final TextureRegion CREDITS_UNLIT = new TextureRegion(CREDITS_TEXTURE, 0, 0, 250, 100);
+        public static final TextureRegion CREDITS_LIT = new TextureRegion(CREDITS_TEXTURE, 0, 100, 250, 100);
+    }
+
     public static final class Tiles {
         public static final Texture TILES_TEXTURE = new Texture("tiles.png");
         public static final TextureRegion[] TILES = getHorizontalTextureRegionArray(TILES_TEXTURE,
@@ -118,6 +131,9 @@ public final class Textures {
     }
 
     public static void dispose() {
+        MainMenu.PLAY_TEXTURE.dispose();
+        MainMenu.CREDITS_TEXTURE.dispose();
+        MainMenu.SETTINGS_TEXTURE.dispose();
         Tiles.TILES_TEXTURE.dispose();
         Tiles.NUMBERS_TEXTURE.dispose();
         Overlay.INVENTORY.dispose();
