@@ -10,10 +10,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.*;
 
 import static game.tiles.Textures.MainMenu.*;
+import static game.tiles.screens.Screens.*;
 
 public class MainMenuScreen extends ScreenAdapter {
-    private final Tiles game;
-
     // private final Texture titleTexture;
 
     private final Viewport viewport;
@@ -22,8 +21,7 @@ public class MainMenuScreen extends ScreenAdapter {
     private final Button creditsButton;
     private final Button[] buttons;
 
-    public MainMenuScreen(Tiles game) {
-        this.game = game;
+    public MainMenuScreen() {
         // titleTexture = new Texture(Gdx.files.internal("title-screen.png"));
         viewport = new ScreenViewport();
 
@@ -42,28 +40,28 @@ public class MainMenuScreen extends ScreenAdapter {
         x = vec.x;
         y = vec.y;
 
-        game.batch.begin();
+        GAME.batch.begin();
         for (Button button : buttons) {
-            button.draw(game.batch, x, y, Gdx.input.isTouched());
+            button.draw(GAME.batch, x, y, Gdx.input.justTouched());
         }
-        game.batch.end();
+        GAME.batch.end();
     }
 
     public void resize(int x, int y) {
         viewport.update(x, y);
-        game.batch.setProjectionMatrix(viewport.getCamera().combined);
+        GAME.batch.setProjectionMatrix(viewport.getCamera().combined);
     }
 
     private void onPlay() {
-        game.setScreen(new GameScreen(game));
+        GAME.setScreen(new GameScreen());
     }
 
     private void onSettings() {
-        game.setScreen(new GameScreen(game));
+        GAME.setScreen(SETTINGS_SCREEN);
     }
 
     private void onCredits() {
-        game.setScreen(new GameScreen(game));
+        GAME.setScreen(CREDITS_SCREEN);
     }
 
 }

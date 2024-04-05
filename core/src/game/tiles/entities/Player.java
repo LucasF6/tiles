@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import game.tiles.controllers.DeveloperController;
@@ -42,6 +43,8 @@ public class Player extends Entity {
         inventory.addItem(new Pickaxe());
         inventory.addItem(new Sword());
         inventory.addItem(new Key("key"));
+
+        Entity.getEntities().removeValue(this, true);
     }
 
     public static Player getInstance() {
@@ -116,7 +119,28 @@ public class Player extends Entity {
 
     @Override
     public void draw(SpriteBatch batch) {
+        if (inventory.isHoldingSomething()) {
+            Vector3 vec = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            MapViewer.getInstance().unproject(vec);
+            float itemAngle = MathUtils.atan2(vec.y - y, vec.x - x);
+            if (itemAngle < 0) {
+                drawPlayer(batch);
+                drawItem(batch, itemAngle);
+            } else {
+                drawItem(batch, itemAngle);
+                drawPlayer(batch);
+            }
+        } else {
+            drawPlayer(batch);
+        }
+    }
+
+    private void drawPlayer(SpriteBatch batch) {
         batch.draw(getTextureRegion(), x - 0.75f / 2, y, 0.75f, 1f);
+    }
+
+    private void drawItem(SpriteBatch batch, float angleRadians) {
+        inventory.getItem().drawSprite(batch, angleRadians);
     }
 
     public void drawInventory(SpriteBatch batch) {

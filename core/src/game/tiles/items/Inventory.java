@@ -40,6 +40,14 @@ public class Inventory {
         }
     }
 
+    public boolean isHoldingSomething() {
+        return inventory[selectedItem] != Item.NONE;
+    }
+
+    public Item getItem() {
+        return inventory[selectedItem];
+    }
+
     public void addItem(Item item) {
         if (item.isStackable()) {
             for (int i = 0; i < 10; i++) {

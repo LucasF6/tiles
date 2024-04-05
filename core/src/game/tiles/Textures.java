@@ -13,6 +13,7 @@ public final class Textures {
         public static final Texture PLAY_TEXTURE = new Texture("play-button.png");
         public static final Texture SETTINGS_TEXTURE = new Texture("settings-button.png");
         public static final Texture CREDITS_TEXTURE = new Texture("credits-button.png");
+        public static final Texture BACK_TEXTURE = new Texture("back-button.png");
 
         public static final TextureRegion PLAY_UNLIT = new TextureRegion(PLAY_TEXTURE, 0, 0, 600, 250);
         public static final TextureRegion PLAY_LIT = new TextureRegion(PLAY_TEXTURE, 0, 250, 600, 250);
@@ -20,6 +21,18 @@ public final class Textures {
         public static final TextureRegion SETTINGS_LIT = new TextureRegion(SETTINGS_TEXTURE, 0, 100, 250, 100);
         public static final TextureRegion CREDITS_UNLIT = new TextureRegion(CREDITS_TEXTURE, 0, 0, 250, 100);
         public static final TextureRegion CREDITS_LIT = new TextureRegion(CREDITS_TEXTURE, 0, 100, 250, 100);
+        public static final TextureRegion BACK_UNLIT = new TextureRegion(BACK_TEXTURE, 0, 0, 250, 100);
+        public static final TextureRegion BACK_LIT = new TextureRegion(BACK_TEXTURE, 0, 100, 250, 100);
+
+        public static final Texture SLIDER_TEXTURE = new Texture("slider.png");
+        public static final Texture SETTINGS_LIST = new Texture("settings-list.png");
+
+        public static final TextureRegion[] SLIDER_REGIONS = getVerticalTextureRegionArray(SLIDER_TEXTURE,
+                0, 0, 150, 75, 4);
+        public static final TextureRegion SLIDER_YES_UNLIT = SLIDER_REGIONS[2];
+        public static final TextureRegion SLIDER_YES_LIT = SLIDER_REGIONS[3];
+        public static final TextureRegion SLIDER_NO_UNLIT = SLIDER_REGIONS[0];
+        public static final TextureRegion SLIDER_NO_LIT = SLIDER_REGIONS[1];
     }
 
     public static final class Tiles {
@@ -134,6 +147,9 @@ public final class Textures {
         MainMenu.PLAY_TEXTURE.dispose();
         MainMenu.CREDITS_TEXTURE.dispose();
         MainMenu.SETTINGS_TEXTURE.dispose();
+        MainMenu.BACK_TEXTURE.dispose();
+        MainMenu.SETTINGS_TEXTURE.dispose();
+        MainMenu.SLIDER_TEXTURE.dispose();
         Tiles.TILES_TEXTURE.dispose();
         Tiles.NUMBERS_TEXTURE.dispose();
         Overlay.INVENTORY.dispose();

@@ -14,6 +14,8 @@ public class Key extends Item {
     public Key(String password) {
         super("key", false);
         this.password = password;
+
+        angleRadiansOffset = 0;
     }
 
     public boolean use(float x, float y) {

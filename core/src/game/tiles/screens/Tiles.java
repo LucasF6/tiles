@@ -13,8 +13,9 @@ public class Tiles extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
+        Screens.GAME = this;
 
-        setScreen(new MainMenuScreen(this));
+        setScreen(Screens.MAIN_MENU_SCREEN);
     }
 
     @Override

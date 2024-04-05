@@ -21,8 +21,8 @@ public class GameScreen extends ScreenAdapter {
 	Map map;
 	MapViewer mapViewer;
 
-	public GameScreen(Tiles game) {
-		batch = game.batch;
+	public GameScreen() {
+		batch = Screens.GAME.batch;
 		overlayViewport = new FitViewport(10, 10);
 		overlayViewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		player = Player.getInstance();
@@ -43,14 +43,16 @@ public class GameScreen extends ScreenAdapter {
 	@Override
 	public void render (float delta) {
 		ScreenUtils.clear(0, 0, 0, 1);
-		mapViewer.updateCamera(player.getX(), player.getY());
+		Entity.updateAll(delta);
+		player.update(delta);
 
-		Entity.updateAll(Gdx.graphics.getDeltaTime());
+		mapViewer.updateCamera(player.getX(), player.getY());
 
 		batch.setProjectionMatrix(mapViewer.getProjectionMatrix());
 		batch.begin();
 		map.render(batch, mapViewer.getX(), mapViewer.getY());
 		Entity.drawAll();
+		player.draw(batch);
 		batch.setProjectionMatrix(overlayViewport.getCamera().combined);
 		player.drawInventory(batch);
 		player.drawHealth(batch);
